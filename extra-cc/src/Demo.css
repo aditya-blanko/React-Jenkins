@@ -1,0 +1,100 @@
+/* General Styles */
+body, html {
+    background-color: #d6d6d6; /* Light Grey Background */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    width: 90%;
+    margin: auto;
+    height: 90vh;
+  }
+  
+  /* Form & Table Containers */
+  .form-container, .table-container {
+    width: 45%;
+    background: #b0b0b0; /* Slightly Darker Grey */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+  
+  /* Input Fields */
+  input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #999;
+    border-radius: 5px;
+    font-size: 16px;
+    background: #e0e0e0;
+  }
+  
+  /* Buttons */
+  button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .add-button {
+    background: #28a745; /* Green */
+  }
+  
+  .get-button {
+    background: #007bff; /* Blue */
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+  
+  /* Table Section */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+  }
+  
+  th {
+    background: #343a40; /* Dark Grey */
+    color: white;
+  }
+  
+  td {
+    background: #908c8c;
+  }
+  
+  tr:nth-child(even) {
+    background: #f8f9fa;
+  }
+  
