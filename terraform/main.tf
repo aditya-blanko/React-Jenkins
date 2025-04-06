@@ -9,34 +9,32 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 }
 
-# App Service Plan
-resource "azurerm_app_service_plan" "asp" {
+# App Service Plan (Linux)
+resource "azurerm_service_plan" "asp" {
   name                = var.app_service_plan_name
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  kind                = "Linux"
-  reserved            = true
-
-  sku {
-    tier = "Standard"
-    size = "S1"
-  }
+  os_type             = "Linux"  # Required for Linux
+  sku_name            = "S1"     # Replace with "P1v2" for Premium tier
 }
 
-# Linux Web App (App Service)
+
+# Linux Web App (Node.js 18)
 resource "azurerm_linux_web_app" "app" {
   name                = var.app_service_name
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  service_plan_id     = azurerm_app_service_plan.asp.id
+  service_plan_id     = azurerm_service_plan.asp.id
 
   site_config {
-    linux_fx_version = "NODE|18-lts"
-    always_on        = true
+    always_on = true
+    application_stack {
+      node_version = "18-lts"  # Sets LinuxFxVersion automatically
+    }
   }
 
   app_settings = {
-    WEBSITE_RUN_FROM_PACKAGE = "1"  # Critical for ZIP deployment
+    WEBSITE_RUN_FROM_PACKAGE = "1"
     NODE_ENV                 = "production"
   }
 }
