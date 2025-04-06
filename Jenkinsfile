@@ -41,9 +41,7 @@ pipeline {
         stage('Build React Application') {
             steps {
                 dir('extra-cc') {
-                    bat 'npm cache clean --force'
-                    bat 'npm install relateurl@0.2.7 --save-exact'
-                    bat 'npm install html-minifier-terser@5.1.1 --save-exact'
+                    bat 'npm install'
                     bat 'npm run build'
                     bat 'powershell Compress-Archive -Path "build\\*" -DestinationPath "ReactApp.zip" -Force'
                 }
