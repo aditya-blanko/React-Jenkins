@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'NodeJS 18.x' 
+    }
+    
     environment {
         AZURE_CREDENTIALS_ID = 'azure-service-principal-react'
         RESOURCE_GROUP = 'rg-04082003'
