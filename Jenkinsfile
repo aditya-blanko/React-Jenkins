@@ -1,36 +1,54 @@
 pipeline {
     agent any
+
     environment {
         AZURE_CREDENTIALS_ID = 'azure-service-principal-react'
         RESOURCE_GROUP = 'rg-04082003'
-        APP_SERVICE_NAME = 'react-app-04082003'  
+        APP_SERVICE_NAME = 'webapijenkins-04082003'  
+        AZURE_CLI_PATH = 'C:/Program Files/Microsoft SDKs/Azure/CLI2/wbin'
+        SYSTEM_PATH = 'C:/Windows/System32'
+        TERRAFORM_PATH = 'C:/Users/window 10/Downloads/terraform_1.11.3_windows_386'
     }
 
     stages {
-        stage('Checkout Code') {
+        stage('Terraform Init') {
             steps {
-                git branch: 'main', url: 'https://github.com/aditya-blanko/React-Jenkins.git'  
+                dir('terraform') {
+                    bat '''
+                        set PATH=%AZURE_CLI_PATH%;%SYSTEM_PATH%;%TERRAFORM_PATH%;%PATH%
+                        terraform init
+                    '''
+                }
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Terraform Plan & Apply') {
             steps {
-                bat 'npm install'
+                dir('terraform') {
+                    bat '''
+                        set PATH=%AZURE_CLI_PATH%;%SYSTEM_PATH%;%TERRAFORM_PATH%;%PATH%
+                        terraform plan
+                        terraform apply -auto-approve
+                    '''
+                }
             }
         }
 
-        stage('Build') {
+        stage('Build React Application') {
             steps {
-                bat 'npm run build'
+                dir('extra-cc') {
+                    bat 'npm install'
+                    bat 'npm run build'
+                    bat 'powershell Compress-Archive -Path "build\\*" -DestinationPath "ReactApp.zip" -Force'
+                }
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy to Azure App Service') {
             steps {
                 withCredentials([azureServicePrincipal(credentialsId: AZURE_CREDENTIALS_ID)]) {
-                    bat "az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID"
-                    bat "powershell Compress-Archive -Path ./build/* -DestinationPath ./build.zip -Force"
-                    bat "az webapp deploy --resource-group $RESOURCE_GROUP --name $APP_SERVICE_NAME --src-path ./build.zip --type zip"
+                    bat 'set PATH=%AZURE_CLI_PATH%;%SYSTEM_PATH%;%TERRAFORM_PATH%;%PATH%'
+                    bat 'az webapp deploy --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src-path %WORKSPACE%\\%REACT_APP_DIR%\\ReactApp.zip --type zip'
                 }
             }
         }
