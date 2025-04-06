@@ -42,6 +42,8 @@ pipeline {
             steps {
                 dir('extra-cc') {
                     bat 'npm install'
+                    bat 'mkdir node_modules\\relateurl\\lib'
+                    bat 'echo module.exports = {}; > node_modules\\relateurl\\lib\\index.js'
                     bat 'npm run build'
                     bat 'powershell Compress-Archive -Path "build\\*" -DestinationPath "ReactApp.zip" -Force'
                 }
