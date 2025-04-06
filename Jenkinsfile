@@ -56,7 +56,7 @@ pipeline {
                     bat 'dir %WORKSPACE%\\ReactApp.zip'
                     bat 'az login --service-principal -u "%AZURE_CLIENT_ID%" -p "%AZURE_CLIENT_SECRET%" --tenant "%AZURE_TENANT_ID%"'
                     bat 'az account set --subscription "%AZURE_SUBSCRIPTION_ID%"'
-                    bat 'az webapp deployment source config-zip --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src %WORKSPACE%\\ReactApp.zip --build-remote'
+                    bat 'az webapp deployment source config-zip --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src %WORKSPACE%\\ReactApp.zip'
                 }
             }
         }
