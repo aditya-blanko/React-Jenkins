@@ -33,4 +33,5 @@ resource "azurerm_app_service" "app" {
   site_config {
     linux_fx_version = "NODE|18-lts" 
   }
+  
 }
