@@ -1,100 +1,146 @@
 /* General Styles */
 body, html {
-    background-color: #d6d6d6; /* Light Grey Background */
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
-  
+  background-color: #f5f5f5; /* Light Grey Background */
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 90%;
+  margin: auto;
+  min-height: 90vh;
+}
+
+/* Form & Table Containers */
+.form-container, .table-container {
+  width: 100%;
+  max-width: 800px;
+  background: #ffffff; /* White Background */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+/* Input Fields */
+input {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #f9f9f9;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.add-button {
+  background: #28a745; /* Green */
+}
+
+.get-button {
+  background: #007bff; /* Blue */
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Table Section */
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 14px;
+  text-align: left;
+  font-size: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background: #343a40; /* Dark Grey */
+  color: white;
+  font-weight: 600;
+}
+
+td {
+  background: #ffffff;
+}
+
+tr:hover td {
+  background: #f8f9fa;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .container {
-    display: flex;
-    justify-content: space-between;
-    padding: 40px;
-    width: 90%;
-    margin: auto;
-    height: 90vh;
+    padding: 10px;
+    width: 95%;
   }
   
-  /* Form & Table Containers */
   .form-container, .table-container {
-    width: 45%;
-    background: #b0b0b0; /* Slightly Darker Grey */
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: fit-content;
+    padding: 20px;
   }
   
   h1 {
-    text-align: center;
-    color: #333;
-    font-size: 26px;
-    margin-bottom: 20px;
+    font-size: 24px;
   }
   
-  /* Input Fields */
-  input {
-    display: block;
-    width: 100%;
+  input, button {
     padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #999;
-    border-radius: 5px;
-    font-size: 16px;
-    background: #e0e0e0;
-  }
-  
-  /* Buttons */
-  button {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  .add-button {
-    background: #28a745; /* Green */
-  }
-  
-  .get-button {
-    background: #007bff; /* Blue */
-  }
-  
-  button:hover {
-    opacity: 0.9;
-  }
-  
-  /* Table Section */
-  table {
-    width: 100%;
-    border-collapse: collapse;
   }
   
   th, td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
-    font-size: 16px;
+    padding: 10px;
+    font-size: 14px;
   }
-  
-  th {
-    background: #343a40; /* Dark Grey */
-    color: white;
-  }
-  
-  td {
-    background: #908c8c;
-  }
-  
-  tr:nth-child(even) {
-    background: #f8f9fa;
-  }
-  
+}
