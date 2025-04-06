@@ -44,7 +44,7 @@ pipeline {
                     bat 'npm install'
                     bat 'echo module.exports = {}; > node_modules\\relateurl\\lib\\index.js'
                     bat 'npm run build'
-                    bat 'powershell Compress-Archive -Path "build\\*" -DestinationPath "ReactApp.zip" -Force'
+                    bat 'powershell Compress-Archive -Path "build\\*" -DestinationPath "../ReactApp.zip" -Force'
                 }
             }
         }
@@ -53,7 +53,7 @@ pipeline {
             steps {
                 withCredentials([azureServicePrincipal(credentialsId: AZURE_CREDENTIALS_ID)]) {
                     bat 'set PATH=%AZURE_CLI_PATH%;%SYSTEM_PATH%;%TERRAFORM_PATH%;%PATH%'
-                    bat 'az webapp deploy --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src-path %WORKSPACE%\\extra-cc\\ReactApp.zip --type zip'
+                    bat 'az webapp deploy --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src-path ReactApp.zip --type zip'
                 }
             }
         }
