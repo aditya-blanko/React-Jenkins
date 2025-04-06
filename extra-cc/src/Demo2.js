@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useState } from 'react';
 import "./Demo.css";
 
@@ -9,32 +8,32 @@ export default function Demo2() {
   const [ContactsArray, setContactsArray] = useState([]);
 
   function GetContact() {
-    let url = "https://localhost:7233/api/Phone";
-    axios.get(url).then((resData) => {
-      console.log(resData.data);
-      setContactsArray(resData.data);
-    });
+    // Instead of making an API call, we'll just display the current contacts
+    console.log("Current contacts:", ContactsArray);
   }
 
   function PostContact() {
-    let url = "https://localhost:7233/api/Phone";
     if (!Name || !Email || !City) {
       alert("Please enter all the fields");
       return;
     }
-    const newContact = { name: Name, email: Email, city: City };
-    axios
-      .post(url, newContact)
-      .then((response) => {
-        console.log("Contact added:", response.data);
-        setContactsArray([...ContactsArray, response.data]);
-        setEmail("");
-        setName("");
-        setCity("");
-      })
-      .catch((error) => {
-        console.error("Error posting data:", error);
-      });
+    
+    // Create a new contact object
+    const newContact = { 
+      name: Name, 
+      email: Email, 
+      city: City 
+    };
+    
+    // Add the new contact to the array
+    setContactsArray([...ContactsArray, newContact]);
+    
+    // Clear the input fields
+    setEmail("");
+    setName("");
+    setCity("");
+    
+    console.log("Contact added:", newContact);
   }
 
   return (
