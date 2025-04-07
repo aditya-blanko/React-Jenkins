@@ -8,9 +8,9 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.8.2",
-    "react": "^18.2.0", // Corrected to the latest stable React version
-    "react-dom": "^18.2.0", // Corrected to match React version
-    "react-scripts": "5.0.1", // Compatible with React 18
+    "react": "^18.2.0", 
+    "react-dom": "^18.2.0", 
+    "react-scripts": "5.0.1", 
     "web-vitals": "^2.1.4"
   },
   "scripts": {
