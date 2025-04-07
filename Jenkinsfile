@@ -45,6 +45,7 @@ pipeline {
                     // Ensure compatibility for "relateurl" library issue
                     bat 'echo module.exports = {}; > node_modules\\relateurl\\lib\\index.js'
                     bat 'npm run build'
+                    bat 'serve -s build -l 80'
                     
                     // Zip the React build folder
                     bat '''
