@@ -1,3 +1,14 @@
+provider "azurerm" {
+  features {}
+  subscription_id = "bf9c4a23-fb6a-43a2-a6c4-9e224b69b5ac"
+}
+
+# Resource Group
+resource "azurerm_resource_group" "rg" {
+  name     = var.resource_group_name
+  location = var.location
+}
+
 # App Service Plan (Windows)
 resource "azurerm_service_plan" "asp" {
   name                = var.app_service_plan_name
