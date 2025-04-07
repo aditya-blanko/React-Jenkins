@@ -41,7 +41,7 @@ pipeline {
         stage('Build React Application') {
             steps {
                 dir('extra-cc') {
-                    bat 'npm install'
+                    bat 'npm install --global serve'
                     // Ensure compatibility for "relateurl" library issue
                     bat 'echo module.exports = {}; > node_modules\\relateurl\\lib\\index.js'
                     bat 'npm run build'
